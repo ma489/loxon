@@ -14,13 +14,15 @@
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body>
-  <ul class="menu">
-    <li><a href="#/view1">Home</a></li>
-    <li><a href="#/view2">Oxford -> London</a></li>
-    <li><a href="#/view3">London -> Oxford</a></li>
-    <li>LoXoN v<span app-version></span></li>
-  </ul>
+<body class="body">
+<div class="nav">
+    <ul class="menu">
+        <li>LoXoN v<span app-version></span></li>
+        <li><a href="#/home">Home</a></li>
+        <li><a href="#/oxford">Oxford -> London</a></li>
+        <li><a href="#/london">London -> Oxford</a></li>
+    </ul>
+</div>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -35,9 +37,9 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="view2/view2.js"></script>
-  <script src="view3/view3.js"></script>
+  <script src="components/home/homeController.js"></script>
+  <script src="components/oxford/oxfordController.js"></script>
+  <script src="components/london/londonController.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>

@@ -1,10 +1,10 @@
 'use strict';
 
-describe('myApp.view2 module', function() {
+describe('myApp.oxford module', function() {
 
   beforeEach(module('myApp.view2'));
 
-  describe('view2 controller', function(){
+  describe('oxford controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
