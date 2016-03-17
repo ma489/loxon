@@ -9,6 +9,11 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
-
+.controller('View2Ctrl', [function($scope) {
+  var mapOptions = {
+    zoom: 14,
+    center: new google.maps.LatLng(51.7568262, -1.2281289),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 }]);

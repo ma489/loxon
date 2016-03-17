@@ -9,6 +9,11 @@ angular.module('myApp.view3', ['ngRoute'])
     });
 }])
 
-.controller('View3Ctrl', [function() {
-
+.controller('View3Ctrl', [function($scope) {
+    var mapOptions = {
+        zoom: 14,
+        center: new google.maps.LatLng(51.5050041, -0.1981156),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 }]);
