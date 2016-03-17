@@ -1,0 +1,5 @@
+- Hook up to back end
+- Modularise code more
+- Make UI pretty
+- Remove unecessary files
+- Review directory structure
