@@ -15,5 +15,5 @@ angular.module('myApp.view3', ['ngRoute'])
         center: new google.maps.LatLng(51.5050041, -0.1981156),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    $scope.map = new google.maps.Map(document.getElementById('londonMap'), mapOptions);
 }]);

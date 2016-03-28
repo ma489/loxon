@@ -1,35 +1,48 @@
 /* app css stylesheet */
 
-.body {
+/*.body {*/
+  /*background-color: #58666e;*/
+/*}*/
+
+/*.menu {*/
+  /*list-style: none;*/
+  /*border-bottom: 0.1em solid black;*/
+  /*padding: 0 0 0.5em;*/
+/*}*/
+
+/*.nav {*/
+  /*!*float: left;*!*/
+  /*!*display: inline;*!*/
+/*}*/
+
+/*.menu > li {*/
+  /*display: inline;*/
+/*}*/
+
+/*.menu > li:before {*/
+  /*content: "|";*/
+  /*padding-right: 0.3em;*/
+/*}*/
+
+/*.menu > li:nth-child(1):before {*/
+  /*content: "";*/
+  /*padding: 0;*/
+/*}*/
+
+#map, #londonMap {
+  width: 100%;
+  /*height: calc(100vh - 100px);*/
+  height:100vh;
+}
+
+md-sidenav  {
+  width: 110px;height:100%;
+  padding:20px;
   background-color: #58666e;
 }
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  padding: 0 0 0.5em;
-}
-
-.nav {
-  /*float: left;*/
-  /*display: inline;*/
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-
-#map {
-  width: 100%;
-  height: calc(100vh - 100px);
+md-content {
+  /*background-color : tan;*/
+  height:100%;
+  /*padding:20px;*/
 }

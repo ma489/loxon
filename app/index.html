@@ -9,33 +9,64 @@
   <title>LoXoN</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <!--<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">-->
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
-  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <!--<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>-->
 </head>
-<body class="body">
-<div class="nav">
-    <ul class="menu">
-        <li>LoXoN v<span app-version></span></li>
-        <li><a href="#/home">Home</a></li>
-        <li><a href="#/oxford">Oxford -> London</a></li>
-        <li><a href="#/london">London -> Oxford</a></li>
-    </ul>
-</div>
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
 
-  <div ng-view></div>
+<body ng-app="MyApp" layout="row" ng-cloak>
+
+<md-sidenav layout="column" class="sidenav1" md-is-locked-open='true'>
+  <!--<ul class="menu">-->
+  <ul>
+    <li>LoXoN v<span app-version></span></li>
+    <li><a href="#/home">Home</a></li>
+    <li><a href="#/oxford">Oxford -> London</a></li>
+    <li><a href="#/london">London -> Oxford</a></li>
+  </ul>
+</md-sidenav>
+
+<md-content flex layout="column">
+    <ng-view>
+        View Content
+    </ng-view>
+</md-content>
+<!--</body>-->
+
+
+<!--<body class="body">-->
+<!--<div class="nav">-->
+    <!--<ul class="menu">-->
+        <!--<li>LoXoN v<span app-version></span></li>-->
+        <!--<li><a href="#/home">Home</a></li>-->
+        <!--<li><a href="#/oxford">Oxford -> London</a></li>-->
+        <!--<li><a href="#/london">London -> Oxford</a></li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+  <!--&lt;!&ndash;[if lt IE 7]>-->
+      <!--<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>-->
+  <!--<![endif]&ndash;&gt;-->
+
+  <!--<div ng-view></div>-->
 
 
   <!--&lt;!&ndash; In production use:-->
   <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>-->
   <!--&ndash;&gt;-->
+
+<!--<link href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css" media="all" rel="stylesheet" type="text/css" />-->
+  <link href="bower_components/angular-material/angular-material.min.css" media="all" rel="stylesheet" type="text/css" />
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <!--<script src="bower_components/angular-material/angular-material.js"></script>-->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>-->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.js"></script>-->
   <script src="app.js"></script>
   <script src="components/home/homeController.js"></script>
   <script src="components/oxford/oxfordController.js"></script>
