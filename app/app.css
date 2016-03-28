@@ -29,14 +29,15 @@
   /*padding: 0;*/
 /*}*/
 
-#map, #londonMap {
+#oxfordMap, #londonMap {
   width: 100%;
   /*height: calc(100vh - 100px);*/
   height:100vh;
 }
 
 md-sidenav  {
-  width: 110px;height:100%;
+  width: 110px;
+  height:100%;
   padding:20px;
   background-color: #58666e;
 }
@@ -45,4 +46,8 @@ md-content {
   /*background-color : tan;*/
   height:100%;
   /*padding:20px;*/
+}
+
+.active {
+  background-color: #00A000;
 }

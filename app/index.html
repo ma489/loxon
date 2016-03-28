@@ -16,16 +16,41 @@
 </head>
 
 
-<body ng-app="MyApp" layout="row" ng-cloak>
+<body ng-app="LoXoN" layout="row" ng-cloak>
 
 <md-sidenav layout="column" class="sidenav1" md-is-locked-open='true'>
   <!--<ul class="menu">-->
   <ul>
     <li>LoXoN v<span app-version></span></li>
-    <li><a href="#/home">Home</a></li>
-    <li><a href="#/oxford">Oxford -> London</a></li>
-    <li><a href="#/london">London -> Oxford</a></li>
+    <!--<md-button class="md-raised"><a href="#/home">Home</a></md-button>-->
+    <li>
+    <menu-link section="page" class="ng-isolate-scope">
+      <a class="md-button md-ink-ripple" ng-transclude="" ng-class="{'active' : isSelected()}" ng-href="#/home" ng-click="focusSection()" href="#/home" aria-label="Autocomplete">
+        <span class="ng-binding ng-scope">Home</span>
+      </a>
+    </menu-link>
+    </li>
+    <li>
+    <menu-link section="page" class="ng-isolate-scope">
+      <a class="md-button md-ink-ripple" ng-transclude="" ng-class="{'active' : isSelected()}" ng-href="#/oxford" ng-click="focusSection()" href="#/oxford" aria-label="Autocomplete">
+        <span class="ng-binding ng-scope">Oxford -> London</span>
+      </a>
+    </menu-link>
+    </li>
+    <li>
+    <menu-link section="page" class="ng-isolate-scope">
+      <a class="md-button md-ink-ripple" ng-transclude="" ng-class="{'active' : isSelected()}" ng-href="#/london" ng-click="focusSection()" href="#/london" aria-label="Autocomplete">
+        <span class="ng-binding ng-scope">London -> Oxford</span>
+      </a>
+    </menu-link>
+    </li>
+    <!--<li><a href="#/oxford">Oxford -> London</a></li>-->
+    <!--<li><a href="#/london">London -> Oxford</a></li>-->
   </ul>
+
+  <!--<li class="ng-scope">-->
+
+
 </md-sidenav>
 
 <md-content flex layout="column">
