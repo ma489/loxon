@@ -22,8 +22,11 @@
 <body ng-app="LoXoN" layout="row" ng-cloak>
 
 <md-sidenav layout="column" class="sidenav1" md-is-locked-open='true'>
+
+  <span>LoXoN v<span app-version></span></span>
+
+
   <ul>
-    <li>LoXoN v<span app-version></span></li>
     <li>
     <menu-link section="page" class="ng-isolate-scope">
       <a class="md-button md-ink-ripple" ng-class="{'active' : isSelected()}" ng-href="#/home" ng-click="focusSection()" href="#/home" aria-label="Autocomplete">
@@ -34,18 +37,20 @@
     <li>
     <menu-link section="page" class="ng-isolate-scope">
       <a class="md-button md-ink-ripple" ng-class="{'active' : isSelected()}" ng-href="#/oxford" ng-click="focusSection()" href="#/oxford" aria-label="Autocomplete">
-        <span class="ng-binding ng-scope">Oxford -> London</span>
+        <span class="ng-binding ng-scope">Oxford → London</span>
       </a>
     </menu-link>
     </li>
     <li>
     <menu-link section="page" class="ng-isolate-scope">
       <a class="md-button md-ink-ripple"  ng-class="{'active' : isSelected()}" ng-href="#/london" ng-click="focusSection()" href="#/london" aria-label="Autocomplete">
-        <span class="ng-binding ng-scope">London -> Oxford</span>
+        <span class="ng-binding ng-scope">London → Oxford</span>
       </a>
     </menu-link>
     </li>
   </ul>
+
+  <span>Settings-Icon-Here Services</span>
 
   <md-switch ng-model="data.cb1" aria-label="Switch 1">
     Oxford Tube {{ data.cb1 }}
@@ -54,6 +59,7 @@
   <md-switch ng-model="data.cb2" aria-label="Switch 2">
     X90 {{ data.cb2 }}
   </md-switch>
+
 
 </md-sidenav>
 
@@ -77,5 +83,6 @@
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6SHuW1Ajo6dnkZtLH6OtGEmHxw77CwAA"></script>
+  <script src="https://material.angularjs.org/latest/docs.js"></script>
 </body>
 </html>
