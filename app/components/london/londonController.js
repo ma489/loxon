@@ -1,19 +1,25 @@
 'use strict';
 
-angular.module('myApp.view3', ['ngRoute'])
+angular
+    .module('loxon.london', ['ngRoute'])
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/london', {
+            templateUrl: 'components/london/londonView.html',
+            controller: 'londonController'
+        });
+    }])
+    .controller('londonController', [function($scope) {
+        var map = initialiseLondonMap();
+    }]);
 
-.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/london', {
-        templateUrl: 'components/london/londonView.html',
-        controller: 'View3Ctrl'
-    });
-}])
-
-.controller('View3Ctrl', [function($scope) {
+function initialiseLondonMap() {
+    const LONDON_LATITUDE = 51.5050041;
+    const LONDON_LONGITUDE = -0.1981156;
+    const ZOOM_LEVEL = 14;
     var mapOptions = {
-        zoom: 14,
-        center: new google.maps.LatLng(51.5050041, -0.1981156),
+        zoom: ZOOM_LEVEL,
+        center: new google.maps.LatLng(LONDON_LATITUDE, LONDON_LONGITUDE),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-    $scope.map = new google.maps.Map(document.getElementById('londonMap'), mapOptions);
-}]);
+    return new google.maps.Map(document.getElementById('londonMap'), mapOptions);
+}

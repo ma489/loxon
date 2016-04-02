@@ -1,14 +1,14 @@
 'use strict';
 
-describe('myApp.oxford module', function() {
+describe('loxon.oxford module', function() {
 
-  beforeEach(module('myApp.view2'));
+  beforeEach(module('loxon.oxfordView'));
 
   describe('oxford controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var view2Ctrl = $controller('View2Ctrl');
+      var view2Ctrl = $controller('oxfordController');
       expect(view2Ctrl).toBeDefined();
     }));
 

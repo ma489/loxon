@@ -1,15 +1,15 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('loxon', [
   'ngRoute',
   'ngMaterial',
   'ngAnimate',
   'ngAria',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.view3',
-  'myApp.version'
+  'loxon.home',
+  'loxon.oxford',
+  'loxon.london',
+  'loxon.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/home'});

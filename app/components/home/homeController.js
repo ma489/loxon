@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('loxon.home', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {
     templateUrl: 'components/home/homeView.html',
-    controller: 'View1Ctrl'
+    controller: 'homeController'
   });
 }])
 
-.controller('View1Ctrl', [function() {
+.controller('homeController', [function() {
 
 }]);

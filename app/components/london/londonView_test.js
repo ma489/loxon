@@ -1,14 +1,14 @@
 'use strict';
 
-describe('myApp.london module', function() {
+describe('loxon.london module', function() {
 
-  beforeEach(module('myApp.view3'));
+  beforeEach(module('loxon.londonView'));
 
   describe('london controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var view3Ctrl = $controller('View3Ctrl');
+      var view3Ctrl = $controller('londonController');
       expect(view3Ctrl).toBeDefined();
     }));
 

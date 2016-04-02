@@ -11,7 +11,7 @@ describe('my app', function() {
   });
 
 
-  describe('view1', function() {
+  describe('home', function() {
 
     beforeEach(function() {
       browser.get('index.html#/home');
@@ -26,7 +26,7 @@ describe('my app', function() {
   });
 
 
-  describe('view2', function() {
+  describe('oxford', function() {
 
     beforeEach(function() {
       browser.get('index.html#/oxford');
