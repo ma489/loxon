@@ -8,13 +8,12 @@ angular
             controller: 'oxfordController'
         });
     }])
-    .controller('oxfordController', [function () {
-
-        var map = initialiseOxfordMap();
-
-        setMarkers(map);
-
-    }]);
+    .controller('oxfordController', [
+        function (COACH_ROUTES) {
+            var map = initialiseOxfordMap();
+            setMarkers(map);
+        }
+    ]);
 
 function initialiseOxfordMap() {
     const OXFORD_LATITUDE = 51.7568262;
