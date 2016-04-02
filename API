@@ -1,0 +1,15 @@
+Request departure times:
+http://www.buscms.com/api/REST/html/departureboard.aspx
+?callback=buscms_widget_departureboard_ui_displayStop_Callback&clientid=Nimbus&stopid=103890&format=jsonp&servicenamefilder=&cachebust=123&sourcetype=siri&requestor=Netescape&_=1459619356857
+
+Request stops:
+http://www.buscms.com/Nimbus/operatorpages/widgets/departureboard/ssi.aspx
+?callback=buscms_widget_departureboard_ui_updateRouteStops_Callback&method=updateRouteStops&routeid=8602&_=1459619356858
+
+Route IDs:
+
+<option value="8602" OptGroup="TUBE">Oxford - London</option>
+<option value="8603" OptGroup="TUBE">London - Oxford</option>
+
+<option value="8547" OptGroup="X90">Gloucester Green Bus Station - Green Line Coach Station</option>
+<option value="8548" OptGroup="X90">Green Line Coach Station - Gloucester Green Bus Station</option>

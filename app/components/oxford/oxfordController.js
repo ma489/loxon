@@ -31,6 +31,11 @@ function initialiseOxfordMap() {
 }
 
 function setMarkers(map) {
+
+    var stop_ids = [1, 2, 3, 4, 5, 6];
+
+    var stop_positions = {1: 0, 2: 1};
+
     //TODO cleanup this code
 
     var marker_gloucester_green = new google.maps.Marker({
