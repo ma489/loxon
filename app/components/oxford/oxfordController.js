@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('loxon.oxford', ['ngRoute'])
+    .module('loxon.oxford', ['ngRoute', 'loxon.info'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/oxford', {
             templateUrl: 'components/oxford/oxfordView.html',
@@ -9,8 +9,10 @@ angular
         });
     }])
     .controller('oxfordController', [
-        function (COACH_ROUTES) {
+        function (OXFORD_COACH_ROUTES, GET_STOPS_SERVICE_URL) {
             var map = initialiseOxfordMap();
+
+            //TODO filter stops
             setMarkers(map);
         }
     ]);
