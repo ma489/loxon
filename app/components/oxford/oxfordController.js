@@ -1,15 +1,18 @@
 'use strict';
 
 angular
-    .module('loxon.oxford', ['ngRoute', 'loxon.info'])
+    .module('loxon.oxford', ['ngRoute', 'loxon.stops'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/oxford', {
             templateUrl: 'components/oxford/oxfordView.html',
             controller: 'oxfordController'
         });
     }])
-    .controller('oxfordController', [
-        function (OXFORD_COACH_ROUTES, GET_STOPS_SERVICE_URL) {
+    .controller('oxfordController', ['CoachStopService',
+        function (CoachStopService) {
+            var stops = CoachStopService.getOxfordStops();
+            //console.log("called CoachStopService from oxfordController");
+            //console.log(stops);
             var map = initialiseOxfordMap();
 
             //TODO filter stops

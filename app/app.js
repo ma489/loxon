@@ -10,7 +10,7 @@ angular
         'loxon.home',
         'loxon.oxford',
         'loxon.london',
-        'loxon.info', //FIXME not loading module?
+        'loxon.info',
         'loxon.version'
     ])
     .config(['$routeProvider', function ($routeProvider) {
