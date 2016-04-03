@@ -6,46 +6,35 @@ angular
             this.getStops = function(routeId) {
                 console.log("Called CoachStopService");
                 console.log(routeId);
-                //var stops = [];
-                //for (var i = 0; i < routes.length; i++) {
-                //    var route = routes[i];
-                //    var route_id = route['id'];
 
                     return $http.jsonp(GET_STOPS_SERVICE_URL + routeId)
                         .success(function(response) {
-                            //console.log("Retrieved stops!");
-                            //console.log(response);
                             return response['stops'];
-                            //stops = stops.concat(retrievedStops);
                         });
-                //}
-                //return stops;
-            }
+            };
 
             this.getStopLocations = function(stops) {
                 var stopsInfo = [];
-                for (var i = 0; i < stops.length; i++) {
-                    var stop = stops[i];
-                    var stopInfo = {};
-                    stopInfo.stopId = stop.stopId;
-                    stopInfo.stopName = stop.stopName;
-                    $http.jsonp(GET_STOP_LOCATIONS_SERVICE_URL   + stop.stopName)
+                angular.forEach(stops, function(thisStop, index) {
+                    $http
+                        .jsonp(GET_STOP_LOCATIONS_SERVICE_URL   + thisStop.stopName)
                         .success(function(response) {
-                            console.log(response);
-                            //TODO filter reponse by stop.stopId
-                            //stopInfo.stopLongitude = ...
-                            //stopInfo.stopLatitude = ...
+                            //console.log(thisStop, response);
+                            var stopInfoResponse =
+                                response.result.filter(function(candidate) {
+                                    var stopIdString = thisStop.stopId.toString();
+                                    return candidate.stopId === stopIdString; })[0]; //TODO check response size?
+                            var stopInfo = {};
+                            stopInfo.id = thisStop.stopId;
+                            stopInfo.name = thisStop.stopName;
+                            stopInfo.lat = stopInfoResponse.lat;
+                            stopInfo.lng = stopInfoResponse.lng;
+                            stopInfo.desc = stopInfoResponse.LongName;
+                            console.log(stopInfo);
+                            //TODO add to stopsInfo
                         });
-                }
-            }
+                });
+            };
 
         }]
     );
-
-function stopsCallBack(data) {
-    //console.log(data);
-    //output = [];
-    //$.each(data.stops, function (idx) {
-    //    output.push('<option value="' + data.stops[idx].stopId + '">' + data.stops[idx].stopName + '</option>');
-    //});
-}
