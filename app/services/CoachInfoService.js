@@ -10,5 +10,7 @@ angular
     ])
     .constant('GET_STOPS_SERVICE_URL',
         'http://www.buscms.com/Nimbus/operatorpages/widgets/departureboard/ssi.aspx?method=updateRouteStops&callback=JSON_CALLBACK&routeid=')
+    .constant('GET_STOP_LOCATIONS_SERVICE_URL',
+        'http://www.buscms.com/api/rest/ent/stop.aspx?clientid=Nimbus&method=searchexact&callback=JSON_CALLBACK&q=')
     .constant('GET_DEPARTURES_SERVICE_URL',
         'http://www.buscms.com/api/REST/html/departureboard.aspx?clientid=Nimbus&cachebust=123&sourcetype=siri&stopid=');
