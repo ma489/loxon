@@ -13,9 +13,10 @@ angular
                         });
             };
 
-            this.stopsInfo = [];
+            //this.stopsInfo = [];
 
             this.getStopLocations = function(stops) {
+                var stopsInfo = [];
                 angular.forEach(stops, function(thisStop, index, obj) {
                     $http
                         .jsonp(GET_STOP_LOCATIONS_SERVICE_URL   + thisStop.stopName)
@@ -31,12 +32,13 @@ angular
                             stopInfo.lat = stopInfoResponse.lat;
                             stopInfo.lng = stopInfoResponse.lng;
                             stopInfo.desc = stopInfoResponse.LongName;
-                            console.log(stopInfo);
-                            //TODO add to stopsInfo
-                            //console.log("this.stopsInfo", this.stopsInfo);
-                            //this.stopsInfo.push(stopInfo);
+                            //console.log(stopInfo);
+                            stopsInfo.push(stopInfo);
+                            console.log("stopsInfo", stopsInfo);
+                        //    TODO return stopsInfo
                         });
-                }, this);
+                });
+                return stopsInfo;
             };
 
         }]

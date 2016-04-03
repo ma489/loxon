@@ -26,8 +26,9 @@ angular
                     //console.log(stopLocations);
                 }
             });
-            //setMarkers(map, stopLocations);
-            setMarkers(map);
+            //console.log(stopLocations);
+            setMarkers(map, stopLocations);
+            //setMarkers(map);
         }
     ]);
 
@@ -72,7 +73,7 @@ function getStops($scope, routeIds, CoachStopService) {
     //return stops;
 }
 
-function setMarkers(map) {
+function setMarkers(map, stopLocations) {
 
     var stop_ids = [1, 2, 3, 4, 5, 6];
 
