@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 angular
     .module('loxon.oxford', ['ngRoute', 'loxon.stops', 'loxon.info'])
     .config(['$routeProvider', function ($routeProvider) {
@@ -8,14 +10,23 @@ angular
             controller: 'oxfordController'
         });
     }])
-    .controller('oxfordController', ['CoachStopService', 'OXFORD_COACH_ROUTES',
-        function (CoachStopService, OXFORD_COACH_ROUTES) {
+    .controller('oxfordController', ['$scope', 'CoachStopService', 'OXFORD_COACH_ROUTES',
+        function ($scope, CoachStopService, OXFORD_COACH_ROUTES) {
             var map = initialiseOxfordMap();
 
-            var stops = CoachStopService.getOxfordStops(OXFORD_COACH_ROUTES);
-            var stopLocations = CoachStopService.getStopLocations(stops);
+            var routeIds = getRouteIds(OXFORD_COACH_ROUTES);
+            //$scope.stops = [];
+            getStops($scope, routeIds, CoachStopService);
+            $scope.$watch('stops', function (stops) {
+                // When $scope.avengers.cast has data, then run these functions
+                if (angular.isDefined(stops)) {
+                    console.info("$scope.stops has data");
+                    console.log(stops);
+                }
+            });
             //console.log("GOT STOPS");
-            //console.log(stops);
+            var stopLocations = CoachStopService.getStopLocations($scope.stops);
+
             //console.log("called CoachStopService from oxfordController");
             //console.log(stops);
 
@@ -38,6 +49,31 @@ function initialiseOxfordMap() {
     };
 
     return new google.maps.Map(document.getElementById('oxfordMap'), mapOptions);
+}
+
+function getRouteIds(coach_routes) {
+    var routes = [];
+    for (var i = 0; i < coach_routes.length; i++) {
+        var route = coach_routes[i];
+        var route_id = route['id'];
+        routes.push(route_id);
+    }
+    return routes;
+}
+
+function getStops($scope, routeIds, CoachStopService) {
+    //var stops = [];
+    for (var i = 0; i < routeIds.length; i++) {
+        var routeId = routeIds[i];
+        CoachStopService.getStops(routeId)
+            .then(function (returnedStops) {
+                if (!angular.isDefined($scope.stops)) {
+                    $scope.stops = [];
+                }
+                $scope.stops = $scope.stops.concat(returnedStops.data.stops);
+            });
+    }
+    //return stops;
 }
 
 function setMarkers(map) {
