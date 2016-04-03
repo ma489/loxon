@@ -17,21 +17,15 @@ angular
             var routeIds = getRouteIds(OXFORD_COACH_ROUTES);
             //$scope.stops = [];
             getStops($scope, routeIds, CoachStopService);
-            var stopLocations;
+            var stopLocations = [];
                 $scope.$watch('stops', function (stops) {
-                // When $scope.avengers.cast has data, then run these functions
                 if (angular.isDefined(stops)) {
-                    console.info("$scope.stops has data");
-                    console.log(stops);
-                    stopLocations = CoachStopService.getStopLocations($scope.stops);
+                    //console.info("$scope.stops has data");
+                    //console.log(stops);
+                    stopLocations = stopLocations.concat(CoachStopService.getStopLocations($scope.stops));
+                    //console.log(stopLocations);
                 }
             });
-            //console.log("GOT STOPS");
-
-            //console.log("called CoachStopService from oxfordController");
-            //console.log(stops);
-
-            //TODO filter stops?
             //setMarkers(map, stopLocations);
             setMarkers(map);
         }

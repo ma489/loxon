@@ -4,8 +4,8 @@ angular
         function ($http, GET_STOPS_SERVICE_URL, GET_STOP_LOCATIONS_SERVICE_URL) {
 
             this.getStops = function(routeId) {
-                console.log("Called CoachStopService");
-                console.log(routeId);
+                //console.log("Called CoachStopService");
+                //console.log(routeId);
 
                     return $http.jsonp(GET_STOPS_SERVICE_URL + routeId)
                         .success(function(response) {
@@ -13,9 +13,10 @@ angular
                         });
             };
 
+            this.stopsInfo = [];
+
             this.getStopLocations = function(stops) {
-                var stopsInfo = [];
-                angular.forEach(stops, function(thisStop, index) {
+                angular.forEach(stops, function(thisStop, index, obj) {
                     $http
                         .jsonp(GET_STOP_LOCATIONS_SERVICE_URL   + thisStop.stopName)
                         .success(function(response) {
@@ -32,8 +33,10 @@ angular
                             stopInfo.desc = stopInfoResponse.LongName;
                             console.log(stopInfo);
                             //TODO add to stopsInfo
+                            //console.log("this.stopsInfo", this.stopsInfo);
+                            //this.stopsInfo.push(stopInfo);
                         });
-                });
+                }, this);
             };
 
         }]

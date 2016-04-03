@@ -16,12 +16,3 @@ angular
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/home'});
     }]);
-
-//loxon.service('StopService',
-//    function ($rootScope) {
-//      var service = this;
-//
-//      service.setLoading = function (loading) {
-//        $rootScope.loadingView = loading;
-//      };
-//    });
