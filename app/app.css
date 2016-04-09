@@ -40,6 +40,7 @@ md-sidenav  {
   height:100%;
   padding:20px;
   background-color: #58666e;
+  border-right: 2px solid black;
 }
 
 md-content {
@@ -50,4 +51,9 @@ md-content {
 
 .active {
   background-color: #00A000;
+}
+
+.logo {
+  border-bottom: 2px solid black;
+  padding: 20px;
 }
