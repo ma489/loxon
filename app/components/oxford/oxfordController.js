@@ -10,24 +10,94 @@ angular
             controller: 'oxfordController'
         });
     }])
-    .controller('oxfordController', ['$scope', 'CoachStopService', 'OXFORD_COACH_ROUTES',
-        function ($scope, CoachStopService, OXFORD_COACH_ROUTES) {
+    .controller('oxfordController', ['$scope', '$q', 'CoachStopService', 'OXFORD_COACH_ROUTES',
+        function ($scope, $q, CoachStopService, OXFORD_COACH_ROUTES) {
             var map = initialiseOxfordMap();
 
-            var routeIds = getRouteIds(OXFORD_COACH_ROUTES);
+            //var routeIds = getRouteIds(OXFORD_COACH_ROUTES);
+
+            //var routes = [];
+            //var x90Stops = CoachStopService.getStops(OXFORD_COACH_ROUTES[0]['id']);
+            //var tubeStops = CoachStopService.getStops(OXFORD_COACH_ROUTES[1]['id']);
+
             //$scope.stops = [];
-            getStops($scope, routeIds, CoachStopService);
-            var stopLocations = [];
+
+            var route_ids = _.map(OXFORD_COACH_ROUTES, function(route) {return route.id});
+            var stopsPromise = _.map(route_ids, function(route_id) {return CoachStopService.getStops(route_id)});
+            $q.all(stopsPromise).then(function(result) {
+                //... This callback would be called when all promised would be resolved
+                    $scope.stops = _.flatten(_.map(result, function(r) {return r.data.stops}));
+                    var stopLocationsPromises = _.map($scope.stops, function(s) {return CoachStopService.getStopLocations(s)});
+                    $q.all(stopLocationsPromises).then(function(res) {
+                        console.log("noooo");
+                        //console.log($scope.stops);
+                        //console.log(res);
+                        var allStopLocationCandidates = _.flatten(_.map(res, function(r) {return r.data.result }));
+                        var stopIdStrings = _.map($scope.stops, function (t) { return t.stopId.toString() });
+                        var stopLocations = _.filter(allStopLocationCandidates, function (s) {
+                            return _.contains(stopIdStrings, s.stopId)});
+                        var stopLocationsInfo = _.map(stopLocations, function (s) {
+                            var stopInfo = {};
+                            stopInfo.id = s.stopId;
+                            stopInfo.name = s.stopName;
+                            stopInfo.lat = s.lat;
+                            stopInfo.lng = s.lng;
+                            stopInfo.desc = s.LongName;
+                            return stopInfo;
+                        });
+                        console.log(stopLocationsInfo);
+                        //TODO filter unique
+                    });
+                //console.log(stops);
+                //var stops = result[0].data.stops;
+                //stops = stops.concat(result[1].data.stops);
+                //$scope.stops = $scope.stops.concat(result[1].data.stops);
+                //console.log();
+            });
+
+            //for (var i = 0; i < OXFORD_COACH_ROUTES.length; i++) {
+            //    var routeId = OXFORD_COACH_ROUTES[i]['id'];
+            //    CoachStopService.getStops(routeId)
+            //        .then(function (returnedStops) {
+                        //if (!angular.isDefined($scope.stops)) {
+                        //    $scope.stops = [];
+                        //}
+                        //$scope.stops = $scope.stops.concat(returnedStops.data.stops);
+                    //});
+                //routes.push(route_id);
+            //}
+
+            //for (var i = 0; i < routeIds.length; i++) {
+            //    var routeId = routeIds[i];
+            //    CoachStopService.getStops(routeId)
+            //        .then(function (returnedStops) {
+            //            if (!angular.isDefined($scope.stops)) {
+            //                $scope.stops = [];
+            //            }
+            //            $scope.stops = $scope.stops.concat(returnedStops.data.stops);
+            //        });
+            //}
+            //return routes;
+            //$scope.stops = [];
+            //getStops($scope, routeIds, CoachStopService).success(function (data) {
+            //    console.log("haha");
+            //    console.log(data);
+            //});
+
+            $scope.stopLocations = [];
                 $scope.$watch('stops', function (stops) {
                 if (angular.isDefined(stops)) {
                     //console.info("$scope.stops has data");
                     //console.log(stops);
-                    stopLocations = stopLocations.concat(CoachStopService.getStopLocations($scope.stops));
+                    $scope.stopLocations = $scope.stopLocations.concat(CoachStopService.getStopLocations($scope.stops));
                     //console.log(stopLocations);
                 }
             });
+            $scope.$watch('stopLocations', function (stopLocations) {
+                //console.log($scope.stopLocations);
+            });
             //console.log(stopLocations);
-            setMarkers(map, stopLocations);
+            setMarkers(map, $scope.stopLocations);
             //setMarkers(map);
         }
     ]);
@@ -49,13 +119,7 @@ function initialiseOxfordMap() {
 }
 
 function getRouteIds(coach_routes) {
-    var routes = [];
-    for (var i = 0; i < coach_routes.length; i++) {
-        var route = coach_routes[i];
-        var route_id = route['id'];
-        routes.push(route_id);
-    }
-    return routes;
+
 }
 
 function getStops($scope, routeIds, CoachStopService) {
