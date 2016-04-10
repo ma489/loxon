@@ -4,12 +4,12 @@ angular
         function ($http, GET_STOPS_SERVICE_URL, GET_STOP_LOCATIONS_SERVICE_URL, GET_DEPARTURES_SERVICE_URL) {
 
             this.getStops = function(routeId) {
-                return $http.jsonp(GET_STOPS_SERVICE_URL + routeId);
+                return $http.jsonp(GET_STOPS_SERVICE_URL + routeId, {cache: true});
             };
 
 
             this.getStopLocations = function(stop) {
-                return $http.jsonp(GET_STOP_LOCATIONS_SERVICE_URL   + stop.stopName);
+                return $http.jsonp(GET_STOP_LOCATIONS_SERVICE_URL   + stop.stopName, {cache: true});
             };
 
             this.getStopDepartures = function(stopId) {
