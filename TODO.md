@@ -3,6 +3,6 @@
 - Remove unnecessary files
 - Review directory structure
 - TODOs/warnings/etc
-- Address overlapping marker info windows
 - Tidy up homepage
+- Address overlapping marker info windows?
 - Twitter feed?

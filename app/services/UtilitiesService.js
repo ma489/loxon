@@ -3,7 +3,16 @@ angular
     .service('UtilitiesService', ['CoachStopService', 'COACH_SERVICES',
         function (CoachStopService, COACH_SERVICES) {
 
-            this.processStopLocations = function(res, $scope, CoachStopService, COACH_SERVICES, filterFunction) {
+            this.initialiseMap = function(latitude, longitude, elementId) {
+                var mapOptions = {
+                    zoom: 14,
+                    center: new google.maps.LatLng(latitude, longitude),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                return new google.maps.Map(document.getElementById(elementId), mapOptions);
+            };
+
+            this.processStopLocations = function(res, $scope, CoachStopService, COACH_SERVICES, stopFilter) {
                 var allStopLocationCandidates = _.flatten(_.map(res, function (r) {
                     return r.data.result
                 }));
@@ -23,7 +32,7 @@ angular
                     return stopInfo;
                 });
                 stopLocationsInfo = _.uniq(stopLocationsInfo, function(item, key, id) { return item.id; });
-                stopLocationsInfo = filterFunction(stopLocationsInfo);
+                stopLocationsInfo = _.filter(stopLocationsInfo, stopFilter);
                 return this.setMarkers($scope.map, stopLocationsInfo, CoachStopService, COACH_SERVICES);
             };
 
@@ -36,7 +45,7 @@ angular
                             position: {lat: parseFloat(sl.lat), lng: parseFloat(sl.lng)},
                             map: map,
                             title: sl.name,
-                            label: sl.name.charAt(0)
+                            label: sl.name.charAt(0),
                         })
                     };
                 });
@@ -65,7 +74,7 @@ angular
                             if (m.marker.info != null) { m.marker.info.close(); }
                             var content = m.marker.title + '<br/>' + departureTimes;
                             m.marker.info = new google.maps.InfoWindow({
-                                content: content
+                                content: content,
                             });
                             m.marker.info.open(map, m.marker);
                         }
