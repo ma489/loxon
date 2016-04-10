@@ -11,6 +11,7 @@ angular
         'loxon.oxford',
         'loxon.london',
         'loxon.info',
+        'loxon.utils',
         'loxon.version'
     ])
     .config(['$routeProvider', function ($routeProvider) {

@@ -1,9 +1,9 @@
+- Refresh bus times
+- Cache bus stops
 - Clean up code
 - Make side bar more pretty
+- Service toggling
 - Remove unecessary files
 - Review directory structure
-- Cache bus times
-- Refresh bus times
-- Service toggling
 - Address overlapping marker info windows
 - Twitter feed?
