@@ -24,8 +24,7 @@ angular
                 });
                 stopLocationsInfo = _.uniq(stopLocationsInfo, function(item, key, id) { return item.id; });
                 stopLocationsInfo = filterFunction(stopLocationsInfo);
-                var markers = this.setMarkers($scope.map, stopLocationsInfo, CoachStopService, COACH_SERVICES);
-                return markers;
+                return this.setMarkers($scope.map, stopLocationsInfo, CoachStopService, COACH_SERVICES);
             };
 
             this.setMarkers = function(map, stopLocations, CoachStopService, COACH_SERVICES) {
@@ -53,19 +52,17 @@ angular
             };
 
             this.displayDepartureTimes = function(markers, CoachStopService, COACH_SERVICES, map) {
-                console.log(new Date().getTime().toString() + 'called displayDepartureTimes');
                 _.map(markers, function (m) {
                     CoachStopService.getStopDepartures(m.stop.id).then(function (response) {
-                        //var departureTimes = '<ol>';
                         var departureTimes = '';
                         $(response.data).find('.rowServiceDeparture').each(function (index) {
                             if (_.contains(COACH_SERVICES, $(this).find('.colServiceName').text())) {
-                                departureTimes += new Date().getTime().toString() + '• ' + $(this).find('.colServiceName').text() + ' - '
+                                departureTimes += '• ' + $(this).find('.colServiceName').text() + ' - '
                                     + $(this).find('.colDepartureTime').text() + '<br/>';
                             }
                         });
-                        //departureTimes += '</ol>';
                         if (departureTimes !== '') {
+                            if (m.marker.info != null) { m.marker.info.close(); }
                             var content = m.marker.title + '<br/>' + departureTimes;
                             m.marker.info = new google.maps.InfoWindow({
                                 content: content

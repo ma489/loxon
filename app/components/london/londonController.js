@@ -18,13 +18,15 @@ angular
                 var stopLocationsPromises = _.map($scope.stops, function(s) {return CoachStopService.getStopLocations(s)});
                 $q.all(stopLocationsPromises).then(function(res) {
                     var markers = UtilitiesService.processStopLocations(res, $scope, CoachStopService, COACH_SERVICES, filterForLondonStops);
-                    $interval(UtilitiesService.displayDepartureTimes(markers, CoachStopService, COACH_SERVICES, $scope.map), 10000);
+                    const REFRESH_TIME_MILLIS = 60000;
+                    $interval(function() {UtilitiesService.displayDepartureTimes(markers, CoachStopService, COACH_SERVICES, $scope.map);}, REFRESH_TIME_MILLIS);
                 });
             });
         }
     ]);
 
 function initialiseLondonMap() {
+    //TODO move these constants?
     const LONDON_LATITUDE = 51.5050041;
     const LONDON_LONGITUDE = -0.169797;
     const ZOOM_LEVEL = 14;

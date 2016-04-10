@@ -18,7 +18,8 @@ angular
                 var stopLocationsPromises = _.map($scope.stops, function(s) {return CoachStopService.getStopLocations(s)});
                 $q.all(stopLocationsPromises).then(function(res) {
                     var markers = UtilitiesService.processStopLocations(res, $scope, CoachStopService, COACH_SERVICES, filterForOxfordStops);
-                    $interval(UtilitiesService.displayDepartureTimes(markers, CoachStopService, COACH_SERVICES, $scope.map), 10000);
+                    const REFRESH_TIME_MILLIS = 60000;
+                    $interval(function() {UtilitiesService.displayDepartureTimes(markers, CoachStopService, COACH_SERVICES, $scope.map);}, REFRESH_TIME_MILLIS);
                 });
             });
         }
