@@ -59,8 +59,15 @@ function processStopLocations(res, $scope, CoachStopService, COACH_SERVICES) {
         return stopInfo;
     });
     //TODO filter unique stops
-    //TODO filter for oxford stops
+    stopLocationsInfo = filterForOxfordStops(stopLocationsInfo);
     setMarkers($scope.map, stopLocationsInfo, CoachStopService, COACH_SERVICES);
+}
+
+function filterForOxfordStops(stopLocationsInfo) {
+    stopLocationsInfo = _.filter(stopLocationsInfo, function (x) {
+        return parseFloat(x.lng) < -1
+    });
+    return stopLocationsInfo;
 }
 
 function setMarkers(map, stopLocations, CoachStopService, COACH_SERVICES) {
@@ -81,13 +88,14 @@ function setMarkers(map, stopLocations, CoachStopService, COACH_SERVICES) {
 
     var marker_info = _.map(markers, function (m) {
         CoachStopService.getStopDepartures(m.stop.id).then(function (response) {
-            var departureTimes = '';
+            var departureTimes = '<ol>';
             $(response.data).find('.rowServiceDeparture').each(function(index) {
                 if (_.contains(COACH_SERVICES, $(this).find('.colServiceName').text())) {
-                    departureTimes += $(this).find('.colServiceName').text() + ' - '
-                        + $(this).find('.colDepartureTime').text() + '<br/>';
+                    departureTimes += '<li>' + $(this).find('.colServiceName').text() + ' - '
+                        + $(this).find('.colDepartureTime').text() + '</li>';
                 }
             });
+            departureTimes += '</ol>';
             var content = m.marker.title + '<br/>' + departureTimes;
             m.marker.info = new google.maps.InfoWindow({
                 content: content
