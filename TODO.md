@@ -1,8 +1,8 @@
-- Make side bar more pretty
 - Service toggling
+- Make side bar more pretty
 - Remove unnecessary files
 - Review directory structure
 - TODOs/warnings/etc
-- Tidy up homepage
+- Tidy up homepage (inc. disclaimer)
 - Address overlapping marker info windows?
 - Twitter feed?
