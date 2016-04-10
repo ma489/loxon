@@ -16,12 +16,12 @@ angular
             $q.all(stopsPromise).then(function(result) {
                 $scope.stops = _.flatten(_.map(result, function(r) {return r.data.stops}));
                 var stopLocationsPromises = _.map($scope.stops, function(s) {return CoachStopService.getStopLocations(s)});
-                $q.all(stopLocationsPromises).then(function(res) { processStopLocations(res, $scope, CoachStopService, COACH_SERVICES); });
+                $q.all(stopLocationsPromises).then(function(res) { processStopLocations(res, $scope, CoachStopService, COACH_SERVICES, filterForOxfordStops); });
             });
         }
     ]);
 
-//TODO a separate function to update stop times periodically
+//TODO a separate function to update stop times periodically?
 
 
 function initialiseOxfordMap() {
@@ -39,7 +39,7 @@ function initialiseOxfordMap() {
     return new google.maps.Map(document.getElementById('oxfordMap'), mapOptions);
 }
 
-function processStopLocations(res, $scope, CoachStopService, COACH_SERVICES) {
+function processStopLocations(res, $scope, CoachStopService, COACH_SERVICES, filterForOxfordStops) {
     var allStopLocationCandidates = _.flatten(_.map(res, function (r) {
         return r.data.result
     }));
@@ -58,8 +58,8 @@ function processStopLocations(res, $scope, CoachStopService, COACH_SERVICES) {
         stopInfo.desc = s.LongName;
         return stopInfo;
     });
-    //TODO filter unique stops
-    stopLocationsInfo = filterForOxfordStops(stopLocationsInfo);
+    stopLocationsInfo = _.uniq(stopLocationsInfo, function(item, key, id) { return item.id; });
+    stopLocationsInfo = filterFunction(stopLocationsInfo);
     setMarkers($scope.map, stopLocationsInfo, CoachStopService, COACH_SERVICES);
 }
 
@@ -86,22 +86,25 @@ function setMarkers(map, stopLocations, CoachStopService, COACH_SERVICES) {
 
     _.map(markers, function (m) {m.marker.setMap(map)});
 
-    var marker_info = _.map(markers, function (m) {
+    _.map(markers, function (m) {
         CoachStopService.getStopDepartures(m.stop.id).then(function (response) {
-            var departureTimes = '<ol>';
+            //var departureTimes = '<ol>';
+            var departureTimes = '';
             $(response.data).find('.rowServiceDeparture').each(function(index) {
                 if (_.contains(COACH_SERVICES, $(this).find('.colServiceName').text())) {
-                    departureTimes += '<li>' + $(this).find('.colServiceName').text() + ' - '
-                        + $(this).find('.colDepartureTime').text() + '</li>';
+                    departureTimes += '• ' + $(this).find('.colServiceName').text() + ' - '
+                        + $(this).find('.colDepartureTime').text() + '<br/>';
                 }
             });
             departureTimes += '</ol>';
-            var content = m.marker.title + '<br/>' + departureTimes;
-            m.marker.info = new google.maps.InfoWindow({
-                content: content
-            });
-            m.marker.info.open(map, m.marker);
-            return m.marker.info;
+            if (departureTimes !== '<ol></ol>') {
+                var content = m.marker.title + '<br/>' + departureTimes;
+                m.marker.info = new google.maps.InfoWindow({
+                    content: content
+                });
+                m.marker.info.open(map, m.marker);
+            }
+
         });
     });
 

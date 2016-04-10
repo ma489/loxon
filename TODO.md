@@ -1,5 +1,8 @@
-- Hook up to back end
-- Modularise code more
-- Make UI pretty
+- Clean up code
+- Make side bar more pretty
 - Remove unecessary files
 - Review directory structure
+- Cache bus times
+- Refresh bus times
+- Service toggling
+- Address overlapping marker info windows
