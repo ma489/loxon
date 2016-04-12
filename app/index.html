@@ -16,6 +16,11 @@
   <link rel="stylesheet" href="assets/app.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link href="bower_components/angular-material/angular-material.min.css" media="all" rel="stylesheet" type="text/css" />
+  <script>
+    function isPage(name) {
+      return window.location.href.split("/").slice(-1)[0] === name;
+    }
+  </script>
 </head>
 
 
@@ -30,17 +35,17 @@
 
   <ul>
     <li>
-      <a class="my-md-button md-ink-ripple" ng-class="{'active' : isSelected()}" ng-href="#/home" ng-click="focusSection()" href="#/home" aria-label="home">
+      <a class="my-md-button md-ink-ripple" ng-class="{'active' : isPage('home')}" ng-href="#/home" href="#/home" aria-label="home">
         <span class="ng-binding ng-scope">Home</span>
       </a>
     </li>
     <li>
-      <a class="my-md-button md-ink-ripple" ng-class="{'active' : isSelected()}" ng-href="#/oxford" ng-click="focusSection()" href="#/oxford" aria-label="oxford">
+      <a class="my-md-button md-ink-ripple" ng-class="{'active' : isPage('oxford')}" ng-href="#/oxford" href="#/oxford" aria-label="oxford">
         <span class="ng-binding ng-scope">Oxford → London</span>
       </a>
     </li>
     <li>
-      <a class="my-md-button md-ink-ripple"  ng-class="{'active' : isSelected()}" ng-href="#/london" ng-click="focusSection()" href="#/london" aria-label="london">
+      <a class="my-md-button md-ink-ripple"  ng-class="{'active' : isPage('london')}" ng-href="#/london" href="#/london" aria-label="london">
         <span class="ng-binding ng-scope">London → Oxford</span>
       </a>
     </li>
