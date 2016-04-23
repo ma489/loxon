@@ -1,8 +1,8 @@
 {
-  "name": "angular-seed",
-  "description": "A starter project for AngularJS",
-  "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "name": "loxon",
+  "description": "Oxford-London coach times",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ma489/loxon",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -11,6 +11,9 @@
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0",
     "html5-boilerplate": "~5.2.0",
-    "markerclustererplus": "^2.1.4"
+    "markerclustererplus": "^2.1.4",
+    "angular-material": "1.1.12",
+    "jquery": "3.3.1",
+    "underscore": "1.9.1"
   }
 }

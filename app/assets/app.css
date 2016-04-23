@@ -45,7 +45,7 @@ md-switch.md-default-theme.md-checked .md-thumb, md-switch.md-checked .md-thumb 
   text-align: left;
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 18px;
   font-style: inherit;
   font-variant: inherit;
   font-family: inherit;
@@ -73,16 +73,23 @@ md-switch.md-default-theme.md-checked .md-thumb, md-switch.md-checked .md-thumb 
 .home_div {
   padding-top: 20px;
   padding-left: 50px;
+  color: white;
 }
 
 .home_div p {
-  font-size: larger;
+  font-size: x-large;
+}
+
+@media(min-width:767px) {
+  .flex.mainContainer {
+    background-image: url("/app/assets/coach.gif");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
 }
 
 .flex.mainContainer {
-  background-image: url("/app/assets/oxford.jpg");
-  background-size: 100%;
-  background-repeat: no-repeat;
+  background-color: #000B40;
 }
 
 .settings_div {
