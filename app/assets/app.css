@@ -79,7 +79,7 @@ md-switch.md-default-theme.md-checked .md-thumb, md-switch.md-checked .md-thumb 
   font-size: larger;
 }
 
-.flex {
+.flex.mainContainer {
   background-image: url("/app/assets/oxford.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
